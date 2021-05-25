@@ -236,3 +236,61 @@ SELECT TIMESTAMPDIFF(hour, '2021-04-29', '2021-05-25');
 
 SELECT hiredate, DATE_FORMAT(hiredate, '%y/%m/%d %H:%i:%s')
 FROM emp;
+
+#CONVERT => 문자열인 숫자를 숫자로 바꿔줌
+SELECT CONVERT('1234', SIGNED);
+
+SELECT empno, ename
+FROM emp
+WHERE empno = '7566'; #내부적으로 convert함
+
+#문자열을 date 타입으로 변경
+SELECT STR_TO_DATE('2021-05-25', '%Y-%m-%d');
+
+DESC emp;
+#hiredate => 문자열로 날짜 삽입 시 STR_TO_DATE()하여date type으로 변경
+INSERT INTO emp(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+VALUES(9000, 'KIM', 'STUDENT', '7698', '21-04-29', 300, 0, 10);
+
+SELECT *
+FROM emp;
+
+SELECT COUNT(*), COUNT(empno), COUNT(ename), COUNT(comm)
+FROM emp;
+
+SELECT SUM(sal), SUM(comm)
+FROM emp;
+
+SELECT SUM(sal)/COUNT(empno), AVG(sal),
+		sum(comm)/count(empno), AVG(comm), AVG(nvl(comm,0))
+FROM emp;
+
+#부서별 급여합
+SELECT deptno, COUNT(ename), sum(sal), nvl(SUM(comm),0)
+FROM emp
+GROUP BY deptno
+ORDER BY deptno;
+
+#출력은 되나 말이 안 되는 sql문
+SELECT ename, deptno, sum(sal)
+FROM emp
+GROUP BY deptno
+ORDER BY deptno;
+
+#부서번호와 부서별 평균 급여
+SELECT deptno, AVG(sal)
+FROM emp
+GROUP BY deptno
+ORDER BY deptno;
+
+#부서번호와 부서별 평균 급여(반올림하여 소수 첫째 자리까지만)
+SELECT deptno, round(AVG(sal),1)
+FROM emp
+GROUP BY deptno
+ORDER BY deptno;
+
+#직업과 직업별 최대 급여
+SELECT job, MAX(sal)
+FROM emp
+GROUP BY job
+ORDER BY sal desc;
