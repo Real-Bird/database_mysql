@@ -206,3 +206,33 @@ FROM emp;
 #NVL(null, '대입값') => null일 때 대입값으로 변경
 SELECT ename, comm, nvl(comm, 0)
 FROM emp;
+
+SELECT ABS(-10);
+
+SELECT CEIL(3.141592);
+
+SELECT FLOOR(3.141592);
+
+SELECT ROUND(3.141592, 2);
+
+SELECT MOD(10, 3);
+
+SELECT TRUNCATE(3.141592, 3);
+
+#현재     년월일,    시분초, 연원일 시분초
+SELECT CURDATE(), CURTIME(), NOW();
+
+#특정 날짜에 일정 시각 후 계산
+SELECT ADDDATE(NOW(), INTERVAL 2 DAY);
+
+#특정 날자에 일정 시각 전 계산
+SELECT SUBDATE(NOW(), INTERVAL 2 DAY);
+
+#두 날짜 사이의 일수 계산
+SELECT DATEDIFF('2021-05-25', '2021-04-29');
+
+#두 날짜 사이를 시분초로 계산
+SELECT TIMESTAMPDIFF(hour, '2021-04-29', '2021-05-25');
+
+SELECT hiredate, DATE_FORMAT(hiredate, '%y/%m/%d %H:%i:%s')
+FROM emp;
