@@ -42,3 +42,21 @@ FROM member;
 UPDATE member
 SET NAME = '박뱀똥', addr = '속초'
 WHERE num = 3;
+
+DELETE from member 
+WHERE num = 10;
+
+select job, sum(sal) sumsal
+from emp
+where sal <= 2000
+group by job
+order by sal asc;
+
+select *
+from emp;
+
+select Job, count(job) Persons, avg(sal) avgSal
+from emp
+where deptno <= 30
+group by job
+order by avgSal;
