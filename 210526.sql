@@ -30,3 +30,15 @@ select EMPNO, ename
 from emp
 order by EMPNO desc
 limit 0, 5; /*mariaDB에만 있는 기능 limit 시작인덱스(0부터), length*/
+
+DESC member;
+
+INSERT INTO member(num, NAME, addr)
+VALUES (10, '바이든', '미국');
+
+SELECT *
+FROM member;
+
+UPDATE member
+SET NAME = '박뱀똥', addr = '속초'
+WHERE num = 3;
